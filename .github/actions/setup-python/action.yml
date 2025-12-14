@@ -12,4 +12,6 @@ runs:
     - name: "Set up Python"
       uses: actions/setup-python@v5
       with:
-        python-version-file: "pyproject.toml"
+        # pythonmonkey 依赖有预编译轮子，锁定 3.12 避免 GitHub Actions 自动选用
+        # 3.13/3.14 等预发布版本触发源码编译失败
+        python-version: "3.12"
