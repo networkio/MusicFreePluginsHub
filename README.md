@@ -12,8 +12,11 @@
 
 复制下面的链接在 MusicFree 插件订阅中使用：
 ```
-https://musicfreepluginshub.2020818.xyz/plugins.json
+https://apimusic.lhbro.asia/plugins.json
 ```
+或直接访问 `plugins.json`：
+https://apimusic.lhbro.asia/plugins.json
+
 注：
 
 1. 部分插件被作者混淆代码，可能在桌面端无法正常使用。等待 musicfree 作者给桌面端更新插件引擎功能吧。
@@ -24,3 +27,14 @@ https://musicfreepluginshub.2020818.xyz/plugins.json
 - Fork 本仓库并启用 Actions 后，请在仓库的 Action 菜单中设置 Workflow 权限为“读取和写入”。
 - Actions 可以手动触发，或自动执行，生成 plugins.json 文件。
 - 在 `Cloudflare Pages`、`Vercel`、`GitHub Pages`、`Netlify` 等平台导入部署仓库后可直接获取 `plugins.json` 的链接。可绑定自定义域名，以便在国内访问。
+
+## 部署到 Cloudflare Pages（推荐）
+
+1. 在仓库的 Settings → Secrets and variables → Actions 配置三项：
+   - `CLOUDFLARE_ACCOUNT_ID`
+   - `CLOUDFLARE_API_TOKEN`（需要 Pages Edit 权限）
+   - `CLOUDFLARE_PAGES_PROJECT_NAME`（你的 Pages 项目名）
+2. Workflow：`.github/workflows/deploy-cloudflare-pages.yml` 会在 `push main` 或手动触发时：
+   - 安装依赖（uv sync）并运行 `uv run src/main.py` 生成最新 `dist/`
+   - 通过 `cloudflare/pages-action@v1` 把 `dist` 目录部署到 Cloudflare Pages
+3. Pages 项目域名配置好后，订阅地址直接使用：`https://你的域名/plugins.json`。
