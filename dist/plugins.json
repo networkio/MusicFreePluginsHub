@@ -147,6 +147,11 @@
       "version": "0.1.0"
     },
     {
+      "name": "酷我_1",
+      "url": "http://music.haitangw.net/cqapi/kg.js",
+      "version": "0.1.0"
+    },
+    {
       "name": "qq",
       "url": "http://music.haitangw.net/cqapi/qq.js",
       "version": "0.1.0"
